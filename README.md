@@ -1,13 +1,25 @@
-Background: We operate an online marketplace that collects user data and stores it in HDFS using a JSON-like file format. 
-This data includes information about user sessions represented in JSON. 
-Based on this data, our objective was to develop dashboards for business analysts.
+# Online Marketplace Data Analysis
 
-Storage Structure:
-We've implemented two layers due to limited time for development. In the future, we can enhance the storage architecture.
-Layer 1 - Staring: This is a replica of the data sourced from HDFS. If needed, we can always derive new metrics and dashboards from this data. The data here accumulates incrementally and is partitioned by date.
-Layer 2 - Data Marts: This is a specifically defined schema in Postgres. It contains pre-processed data ready for further visualization in Metabase.
+## Background
+We operate an online marketplace that collects user data and stores it in HDFS using a JSON-like file format. This data captures details about user sessions, all formatted in JSON. Using this data, we aimed to create insightful dashboards for our business analysts.
 
-Purchase Definition for Visualizations:
-For the 2nd and 3rd visualizations, a purchase is identified by the following sequence of client clicks:
-product page -> carts -> payments -> confirmations.
-For other click sequences, we cannot confirm that the client proceeded to the cart and completed the purchase without cancelling it.
+## Storage Structure
+Our data storage is designed in two layers:
+
+- **Layer 1 - Staging**: 
+  - A mirror of the data sourced directly from HDFS.
+  - Data in this layer accumulates incrementally and is organized by date.
+  - Offers flexibility to derive new metrics and dashboards as needed.
+
+- **Layer 2 - Data Marts**:
+  - A defined schema in Postgres.
+  - Contains processed data, primed for visualization in Metabase.
+  
+_Note_: Our current two-layer approach was chosen due to developmental time constraints. Future enhancements to the storage architecture are planned.
+
+## Visualization Definitions
+For our 2nd and 3rd visualizations, a purchase is defined by the following sequence of client actions:
+
+- `product page` -> `carts` -> `payments` -> `confirmations`
+
+For sequences differing from the above, we lack the certainty that the client completed their purchase without any cancellations.
