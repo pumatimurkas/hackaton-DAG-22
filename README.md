@@ -1,12 +1,9 @@
-# DE_Hack
-1) Структура хранилищау
-Остановились на двух слоях, так как время на реализацию очень ограничено. В дальнейшем будет возможность усложнить архитектуру хранилища.
-Слой 1 - stage - копия данных из исходника в HDFS. В случае необходимости, по этим данным всегда можно будет расчитать новые показатели и витрины.
-Здесь данные накапливаются инкрементально и хранятся по партициям в разрезе даты
-Слой 2 - marts - наимённая схема в Postgres. Предрассчитанные данные для дальнейшей визуализации в метабейс.
-2) Для визуализаций 2 и 3 покупкой принято считать такую последовательность переходов по ссылкам клиентом:
-страничка с продуктом -> carts -> payments -> confinrmations
-Для остальных последовательностей мы не можем быть уверены, что клиент перешёл в carts и не отменил покупку, сделанную на предыдущим шаге.
-3) Дашборд построен в Metabase доступен по ссылке
-http://130.193.51.3:3000/metabase/dashboard/1-project-pro3
+Storage Structure:
+We've implemented two layers due to limited time for development. In the future, we can enhance the storage architecture.
+Layer 1 - Staring: This is a replica of the data sourced from HDFS. If needed, we can always derive new metrics and dashboards from this data. The data here accumulates incrementally and is partitioned by date.
+Layer 2 - Data Marts: This is a specifically defined schema in Postgres. It contains pre-processed data ready for further visualization in Metabase.
 
+Purchase Definition for Visualizations:
+For the 2nd and 3rd visualizations, a purchase is identified by the following sequence of client clicks:
+product page -> carts -> payments -> confirmations.
+For other click sequences, we cannot confirm that the client proceeded to the cart and completed the purchase without cancelling it.
