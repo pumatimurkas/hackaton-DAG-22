@@ -1,3 +1,7 @@
+Background: We operate an online marketplace that collects user data and stores it in HDFS using a JSON-like file format. 
+This data includes information about user sessions represented in JSON. 
+Based on this data, our objective was to develop dashboards for business analysts.
+
 Storage Structure:
 We've implemented two layers due to limited time for development. In the future, we can enhance the storage architecture.
 Layer 1 - Staring: This is a replica of the data sourced from HDFS. If needed, we can always derive new metrics and dashboards from this data. The data here accumulates incrementally and is partitioned by date.
